@@ -68,6 +68,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\jovan\OneDrive\Desktop\DIS\cinema"/>
 			<item value="C:\Users\jovan\OneDrive\Desktop\DIS\cinema\cinema-parent"/>
 		</list>
 		<list key="projectNameTemplate">
