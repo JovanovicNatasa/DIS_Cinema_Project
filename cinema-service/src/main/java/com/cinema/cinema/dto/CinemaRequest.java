@@ -1,0 +1,13 @@
+package com.cinema.cinema.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+
+@Data
+public class CinemaRequest {
+    @NotBlank(message = "Name is required")
+    private String name;
+
+    @NotBlank(message = "Location is required")
+    private String location;
+}
