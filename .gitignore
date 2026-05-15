@@ -1,0 +1,31 @@
+# Maven
+target/
+*.jar
+*.war
+*.class
+
+# STS4 / Eclipse
+.settings/
+.classpath
+.project
+*.launch
+.metadata/
+
+# Spring Boot
+*.log
+application-local.yml
+
+# Docker
+.docker/
+
+# Environment
+.env
+*.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IntelliJ
+.idea/
+*.iml
