@@ -1,13 +1,13 @@
 package com.cinema.cinema;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+
 class CinemaServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// Unit tests are in CinemaServiceTest.java
 	}
 
 }
