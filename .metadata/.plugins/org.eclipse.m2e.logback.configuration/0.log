@@ -7517,3 +7517,5 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact io.netty:nett
 2026-05-15 21:18:46,537 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2026-05-15 21:18:46,539 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\jovan\OneDrive\Desktop\DIS\cinema\discovery-server\src\test\resources
 2026-05-15 21:20:19,787 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-05-15 21:20:19,789 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2026-05-15 21:20:19,792 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\jovan\OneDrive\Desktop\DIS\cinema\api-gateway\src\test\resources
