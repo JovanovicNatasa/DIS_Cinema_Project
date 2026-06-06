@@ -2,4 +2,6 @@ spring:
   application:
     name: booking-service
   config:
-    import: optional:configserver:http://eureka:eureka-secret@config-server:8888
+    import: configserver:http://eureka:eureka-secret@config-server:8888
+server:
+  port: 8084

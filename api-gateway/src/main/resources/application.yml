@@ -2,7 +2,10 @@ spring:
   application:
     name: api-gateway
   config:
-    import: optional:configserver:http://eureka:eureka-secret@config-server:8888
+    import: configserver:http://eureka:eureka-secret@config-server:8888
+
+server:
+  port: 8080
 
 eureka:
   client:

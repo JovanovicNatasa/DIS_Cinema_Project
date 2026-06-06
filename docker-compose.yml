@@ -11,6 +11,11 @@ services:
       - "5432:5432"
     volumes:
       - user-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   cinema-db:
     image: postgres:15-alpine
@@ -22,6 +27,11 @@ services:
       - "5433:5432"
     volumes:
       - cinema-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   movie-db:
     image: postgres:15-alpine
@@ -33,6 +43,11 @@ services:
       - "5434:5432"
     volumes:
       - movie-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   booking-db:
     image: postgres:15-alpine
@@ -44,6 +59,11 @@ services:
       - "5435:5432"
     volumes:
       - booking-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -53,11 +73,22 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmqctl status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   discovery-server:
     build: ./discovery-server
     ports:
       - "8761:8761"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-u", "eureka:eureka-secret", "http://localhost:8761/actuator/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
 
   config-server:
     build: ./config-server
@@ -66,7 +97,14 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=native
     depends_on:
-      - discovery-server
+      discovery-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
 
   api-gateway:
     build: ./api-gateway
@@ -76,7 +114,14 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      - config-server
+      config-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
 
   user-service:
     build: ./user-service
@@ -90,8 +135,16 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      - config-server
-      - user-db
+      config-server:
+        condition: service_healthy
+      user-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
 
   cinema-service:
     build: ./cinema-service
@@ -105,8 +158,16 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      - config-server
-      - cinema-db
+      config-server:
+        condition: service_healthy
+      cinema-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/actuator/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
 
   movie-service:
     build: ./movie-service
@@ -120,8 +181,16 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      - config-server
-      - movie-db
+      config-server:
+        condition: service_healthy
+      movie-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8083/actuator/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
 
   booking-service:
     build: ./booking-service
@@ -139,9 +208,18 @@ services:
       - SPRING_RABBITMQ_PASSWORD=guest
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      - config-server
-      - booking-db
-      - rabbitmq
+      config-server:
+        condition: service_healthy
+      booking-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
 
   notification-service:
     build: ./notification-service
@@ -161,8 +239,16 @@ services:
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      - config-server
-      - rabbitmq
+      config-server:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/actuator/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
 
 volumes:
   user-db-data:
