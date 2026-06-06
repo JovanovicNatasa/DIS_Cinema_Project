@@ -1,9 +1,6 @@
 version: '3.8'
 
 services:
-  # ========================
-  # DATABASES
-  # ========================
   user-db:
     image: postgres:15-alpine
     environment:
@@ -14,11 +11,6 @@ services:
       - "5432:5432"
     volumes:
       - user-db-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   cinema-db:
     image: postgres:15-alpine
@@ -30,11 +22,6 @@ services:
       - "5433:5432"
     volumes:
       - cinema-db-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   movie-db:
     image: postgres:15-alpine
@@ -46,11 +33,6 @@ services:
       - "5434:5432"
     volumes:
       - movie-db-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   booking-db:
     image: postgres:15-alpine
@@ -62,15 +44,7 @@ services:
       - "5435:5432"
     volumes:
       - booking-db-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
-  # ========================
-  # RABBITMQ
-  # ========================
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:
@@ -79,41 +53,20 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
-    healthcheck:
-      test: ["CMD", "rabbitmq-diagnostics", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
-  # ========================
-  # INFRASTRUCTURE SERVICES
-  # ========================
   discovery-server:
     build: ./discovery-server
     ports:
       - "8761:8761"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:8761/actuator/health"]
-      interval: 15s
-      timeout: 10s
-      retries: 5
 
   config-server:
     build: ./config-server
     ports:
       - "8888:8888"
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=native
     depends_on:
-      discovery-server:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:8888/actuator/health"]
-      interval: 15s
-      timeout: 10s
-      retries: 5
+      - discovery-server
 
   api-gateway:
     build: ./api-gateway
@@ -121,24 +74,24 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      config-server:
-        condition: service_healthy
+      - config-server
 
-  # ========================
-  # BUSINESS SERVICES
-  # ========================
   user-service:
     build: ./user-service
     ports:
       - "8081:8081"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://user-db:5432/userdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      config-server:
-        condition: service_healthy
-      user-db:
-        condition: service_healthy
+      - config-server
+      - user-db
 
   cinema-service:
     build: ./cinema-service
@@ -146,11 +99,14 @@ services:
       - "8082:8082"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cinema-db:5432/cinemadb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      config-server:
-        condition: service_healthy
-      cinema-db:
-        condition: service_healthy
+      - config-server
+      - cinema-db
 
   movie-service:
     build: ./movie-service
@@ -158,11 +114,14 @@ services:
       - "8083:8083"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://movie-db:5432/moviedb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      config-server:
-        condition: service_healthy
-      movie-db:
-        condition: service_healthy
+      - config-server
+      - movie-db
 
   booking-service:
     build: ./booking-service
@@ -170,13 +129,19 @@ services:
       - "8084:8084"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://booking-db:5432/bookingdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      config-server:
-        condition: service_healthy
-      booking-db:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
+      - config-server
+      - booking-db
+      - rabbitmq
 
   notification-service:
     build: ./notification-service
@@ -184,17 +149,21 @@ services:
       - "8085:8085"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - MAIL_USERNAME=${MAIL_USERNAME}
-      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+      - SPRING_MAIL_HOST=smtp.gmail.com
+      - SPRING_MAIL_PORT=587
+      - SPRING_MAIL_USERNAME=${MAIL_USERNAME}
+      - SPRING_MAIL_PASSWORD=${MAIL_PASSWORD}
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:eureka-secret@discovery-server:8761/eureka/
     depends_on:
-      config-server:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
+      - config-server
+      - rabbitmq
 
-# ========================
-# VOLUMES
-# ========================
 volumes:
   user-db-data:
   cinema-db-data:

@@ -9,6 +9,7 @@ import com.cinema.user.model.User;
 import com.cinema.user.repository.RoleRepository;
 import com.cinema.user.repository.UserRepository;
 import com.cinema.user.security.JwtService;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,18 +28,18 @@ public class UserService implements UserDetailsService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    private final AuthenticationManager authenticationManager;
+    private final ApplicationContext applicationContext;
 
     public UserService(UserRepository userRepository,
                        RoleRepository roleRepository,
                        PasswordEncoder passwordEncoder,
                        JwtService jwtService,
-                       AuthenticationManager authenticationManager) {
+                       ApplicationContext applicationContext) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
-        this.authenticationManager = authenticationManager;
+        this.applicationContext = applicationContext;
     }
 
     @Override
@@ -71,6 +72,8 @@ public class UserService implements UserDetailsService {
     }
 
     public AuthResponse login(LoginRequest request) {
+        AuthenticationManager authenticationManager = 
+            applicationContext.getBean(AuthenticationManager.class);
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );

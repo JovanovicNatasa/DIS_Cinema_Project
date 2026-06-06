@@ -58,9 +58,10 @@ INDEX VERSION 1.131+C:\Users\jovan\OneDrive\Desktop\DIS\cinema\.metadata\.plugin
 3687347262.index
 966272602.index
 2936841822.index
-1834678350.index
+561868419.index
 3810349660.index
 171036723.index
+1834678350.index
 2522750934.index
 2999267404.index
 1451474480.index
@@ -111,7 +112,6 @@ INDEX VERSION 1.131+C:\Users\jovan\OneDrive\Desktop\DIS\cinema\.metadata\.plugin
 1634922683.index
 760937852.index
 15641868.index
-2960399442.index
 395861783.index
 1343959710.index
 315453677.index

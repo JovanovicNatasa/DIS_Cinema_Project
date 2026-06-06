@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: booking-service
+  cloud:
+    config:
+      uri: http://eureka:eureka-secret@config-server:8888
+      fail-fast: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:eureka-secret@discovery-server:8761/eureka/
+  instance:
+    prefer-ip-address: true
