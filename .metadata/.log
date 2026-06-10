@@ -2594,3 +2594,530 @@ java.util.concurrent.TimeoutException
 
 !ENTRY org.eclipse.ui 2 2 2026-06-10 15:48:46.261
 !MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
+!SESSION 2026-06-10 17:38:26.412 -----------------------------------------------
+eclipse.buildId=4.14.0.202203131612
+java.version=17.0.2
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
+
+!ENTRY org.eclipse.jface 2 0 2026-06-10 17:38:40.572
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2026-06-10 17:38:40.572
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@af94b0b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@208185c0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2026-06-10 17:38:40.573
+!MESSAGE A conflict occurred for ALT+SHIFT+R:
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1831447c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.rename,Rename,
+		Rename the selected item,
+		Category(org.eclipse.ui.category.file,File,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7741507c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:49.800
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:49.801
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@3eb41fb6[org.springframework.tooling.boot.ls:1.32.0.202203131529(id=569)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:49.810
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:49.926
+!MESSAGE Instantiating ReusableClasspathListenerHandler
+
+!ENTRY org.eclipse.egit.ui 2 0 2026-06-10 17:38:53.457
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\jovan'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.270
+!MESSAGE Boot LS startup time from start to initialized: 8428ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.510
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.VrWlZPjtisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.515
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.519
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.521
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.522
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.523
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.VrWlZPjt => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.563
+!MESSAGE classpath=162 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.572
+!MESSAGE buffering callback sts4.classpath.VrWlZPjt user-service false 162
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.573
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.592
+!MESSAGE classpath=165 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.601
+!MESSAGE buffering callback sts4.classpath.VrWlZPjt api-gateway false 165
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.602
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.616
+!MESSAGE classpath=182 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.626
+!MESSAGE buffering callback sts4.classpath.VrWlZPjt booking-service false 182
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.628
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.638
+!MESSAGE classpath=154 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.646
+!MESSAGE buffering callback sts4.classpath.VrWlZPjt cinema-service false 154
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.647
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.658
+!MESSAGE classpath=139 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.666
+!MESSAGE buffering callback sts4.classpath.VrWlZPjt config-server false 139
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.668
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.680
+!MESSAGE classpath=152 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.688
+!MESSAGE buffering callback sts4.classpath.VrWlZPjt discovery-server false 152
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.689
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.700
+!MESSAGE classpath=154 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.709
+!MESSAGE buffering callback sts4.classpath.VrWlZPjt movie-service false 154
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.710
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.721
+!MESSAGE classpath=134 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.731
+!MESSAGE buffering callback sts4.classpath.VrWlZPjt notification-service false 134
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:38:58.732
+!MESSAGE executing callback sts4.classpath.VrWlZPjt 8 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 17:39:00.134
+!MESSAGE executing callback sts4.classpath.VrWlZPjt SUCCESS [done]
+
+!ENTRY org.eclipse.ui 2 2 2026-06-10 17:56:34.622
+!MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:08.740
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.VrWlZPjt
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:08.744
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.VrWlZPjt
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:08.747
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:08.750
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.VrWlZPjt => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:12.474
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:12.476
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@3eb41fb6[org.springframework.tooling.boot.ls:1.32.0.202203131529(id=569)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:12.479
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.097
+!MESSAGE Boot LS startup time from start to initialized: 5612ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.360
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.PlxFwLtDisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.362
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.363
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.364
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.365
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.366
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.PlxFwLtD => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.393
+!MESSAGE classpath=162 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.406
+!MESSAGE buffering callback sts4.classpath.PlxFwLtD user-service false 162
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.407
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.428
+!MESSAGE classpath=165 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.443
+!MESSAGE buffering callback sts4.classpath.PlxFwLtD api-gateway false 165
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.446
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.464
+!MESSAGE classpath=182 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.476
+!MESSAGE buffering callback sts4.classpath.PlxFwLtD booking-service false 182
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.478
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.489
+!MESSAGE classpath=154 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.500
+!MESSAGE buffering callback sts4.classpath.PlxFwLtD cinema-service false 154
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.501
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.515
+!MESSAGE classpath=139 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.523
+!MESSAGE buffering callback sts4.classpath.PlxFwLtD config-server false 139
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.524
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.536
+!MESSAGE classpath=152 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.546
+!MESSAGE buffering callback sts4.classpath.PlxFwLtD discovery-server false 152
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.547
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.556
+!MESSAGE classpath=154 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.563
+!MESSAGE buffering callback sts4.classpath.PlxFwLtD movie-service false 154
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.564
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.572
+!MESSAGE classpath=134 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.579
+!MESSAGE buffering callback sts4.classpath.PlxFwLtD notification-service false 134
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:18.579
+!MESSAGE executing callback sts4.classpath.PlxFwLtD 8 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:20.062
+!MESSAGE executing callback sts4.classpath.PlxFwLtD SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:26.843
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.PlxFwLtD
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:26.844
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.PlxFwLtD
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:26.846
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:26.847
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.PlxFwLtD => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:28.643
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:28.645
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@3eb41fb6[org.springframework.tooling.boot.ls:1.32.0.202203131529(id=569)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:28.647
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:33.740
+!MESSAGE Boot LS startup time from start to initialized: 5089ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:33.937
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.oGHYhySyisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:33.939
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:33.939
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:33.979
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:33.980
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:33.981
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.oGHYhySy => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:33.998
+!MESSAGE classpath=162 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.008
+!MESSAGE buffering callback sts4.classpath.oGHYhySy user-service false 162
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.009
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.023
+!MESSAGE classpath=165 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.033
+!MESSAGE buffering callback sts4.classpath.oGHYhySy api-gateway false 165
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.034
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.048
+!MESSAGE classpath=182 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.058
+!MESSAGE buffering callback sts4.classpath.oGHYhySy booking-service false 182
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.059
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.070
+!MESSAGE classpath=154 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.080
+!MESSAGE buffering callback sts4.classpath.oGHYhySy cinema-service false 154
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.081
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.091
+!MESSAGE classpath=139 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.102
+!MESSAGE buffering callback sts4.classpath.oGHYhySy config-server false 139
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.104
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.116
+!MESSAGE classpath=152 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.125
+!MESSAGE buffering callback sts4.classpath.oGHYhySy discovery-server false 152
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.126
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.142
+!MESSAGE classpath=154 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.153
+!MESSAGE buffering callback sts4.classpath.oGHYhySy movie-service false 154
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.154
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.166
+!MESSAGE classpath=134 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.175
+!MESSAGE buffering callback sts4.classpath.oGHYhySy notification-service false 134
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:34.175
+!MESSAGE executing callback sts4.classpath.oGHYhySy 8 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:35.538
+!MESSAGE executing callback sts4.classpath.oGHYhySy SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:50.755
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.oGHYhySy
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:50.756
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.oGHYhySy
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:50.758
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:50.759
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.oGHYhySy => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:52.584
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:52.584
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@3eb41fb6[org.springframework.tooling.boot.ls:1.32.0.202203131529(id=569)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:52.586
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.436
+!MESSAGE Boot LS startup time from start to initialized: 4848ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.645
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.tBOqTDVcisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.647
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.648
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.650
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.651
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.651
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.tBOqTDVc => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.667
+!MESSAGE classpath=162 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.681
+!MESSAGE buffering callback sts4.classpath.tBOqTDVc user-service false 162
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.682
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.699
+!MESSAGE classpath=165 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.713
+!MESSAGE buffering callback sts4.classpath.tBOqTDVc api-gateway false 165
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.714
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.732
+!MESSAGE classpath=182 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.746
+!MESSAGE buffering callback sts4.classpath.tBOqTDVc booking-service false 182
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.747
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.764
+!MESSAGE classpath=154 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.777
+!MESSAGE buffering callback sts4.classpath.tBOqTDVc cinema-service false 154
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.779
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.794
+!MESSAGE classpath=139 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.805
+!MESSAGE buffering callback sts4.classpath.tBOqTDVc config-server false 139
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.807
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.823
+!MESSAGE classpath=152 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.839
+!MESSAGE buffering callback sts4.classpath.tBOqTDVc discovery-server false 152
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.840
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.856
+!MESSAGE classpath=154 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.873
+!MESSAGE buffering callback sts4.classpath.tBOqTDVc movie-service false 154
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.874
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.887
+!MESSAGE classpath=134 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.896
+!MESSAGE buffering callback sts4.classpath.tBOqTDVc notification-service false 134
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:57.897
+!MESSAGE executing callback sts4.classpath.tBOqTDVc 8 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 18:18:59.289
+!MESSAGE executing callback sts4.classpath.tBOqTDVc SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 22:50:27.311
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.tBOqTDVc
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 22:50:27.320
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.tBOqTDVc
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 22:50:27.321
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-10 22:50:27.323
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.tBOqTDVc => OK

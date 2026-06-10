@@ -4,6 +4,9 @@ import com.cinema.user.dto.AuthResponse;
 import com.cinema.user.dto.LoginRequest;
 import com.cinema.user.dto.RegisterRequest;
 import com.cinema.user.dto.UserResponse;
+import com.cinema.user.exception.EmailAlreadyExistsException;
+import com.cinema.user.exception.RoleNotFoundException;
+import com.cinema.user.exception.UserNotFoundException;
 import com.cinema.user.model.Role;
 import com.cinema.user.model.User;
 import com.cinema.user.repository.RoleRepository;
@@ -55,10 +58,10 @@ public class UserService implements UserDetailsService {
 
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new EmailAlreadyExistsException("Email already exists: " + request.getEmail());
         }
         Role defaultRole = roleRepository.findByRoleName("USER")
-                .orElseThrow(() -> new RuntimeException("Default role not found"));
+                .orElseThrow(() -> new RoleNotFoundException("Default role not found"));
 
         User user = new User();
         user.setFirstName(request.getFirstName());
@@ -72,7 +75,7 @@ public class UserService implements UserDetailsService {
     }
 
     public AuthResponse login(LoginRequest request) {
-        AuthenticationManager authenticationManager = 
+        AuthenticationManager authenticationManager =
             applicationContext.getBean(AuthenticationManager.class);
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
@@ -96,7 +99,7 @@ public class UserService implements UserDetailsService {
 
     public UserResponse getUserById(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
         return new UserResponse(
                 user.getId(),
                 user.getFirstName(),
@@ -106,6 +109,9 @@ public class UserService implements UserDetailsService {
     }
 
     public void deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new UserNotFoundException("User not found with id: " + id);
+        }
         userRepository.deleteById(id);
     }
 }
