@@ -1,0 +1,1 @@
+SELECT setval('bookings_id_seq', 1, false);

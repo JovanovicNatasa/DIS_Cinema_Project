@@ -90,6 +90,12 @@ public class MovieService {
                 .map(this::mapToScreeningResponse)
                 .collect(Collectors.toList());
     }
+    
+    public ScreeningResponse getScreeningById(Long id) {
+        Screening screening = screeningRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Screening not found"));
+        return mapToScreeningResponse(screening);
+    }
 
     public void deleteScreening(Long id) {
         screeningRepository.deleteById(id);

@@ -6,6 +6,9 @@ spring:
     url: jdbc:postgresql://cinema-db:5432/cinemadb
     username: postgres
     password: postgres
+  sql:
+    init:
+      mode: always
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,6 +16,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  defer-datasource-initialization: true
 
 eureka:
   client:

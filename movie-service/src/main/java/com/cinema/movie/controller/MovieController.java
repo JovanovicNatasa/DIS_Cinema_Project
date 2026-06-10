@@ -69,6 +69,11 @@ public class MovieController {
     public ResponseEntity<List<ScreeningResponse>> getScreeningsByDate(@PathVariable LocalDate date) {
         return ResponseEntity.ok(movieService.getScreeningsByDate(date));
     }
+    
+    @GetMapping("/screenings/{id}")
+    public ResponseEntity<ScreeningResponse> getScreeningById(@PathVariable Long id) {
+        return ResponseEntity.ok(movieService.getScreeningById(id));
+    }
 
     @DeleteMapping("/screenings/{id}")
     public ResponseEntity<Void> deleteScreening(@PathVariable Long id) {
