@@ -81,7 +81,7 @@ public class CinemaServiceTest {
         RuntimeException exception = assertThrows(RuntimeException.class,
                 () -> cinemaService.getCinemaById(99L));
 
-        assertEquals("Cinema not found", exception.getMessage());
+        assertEquals("Cinema not found with id: 99", exception.getMessage());
     }
 
     @Test

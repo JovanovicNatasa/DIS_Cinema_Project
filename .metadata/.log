@@ -10179,3 +10179,164 @@ java.lang.InterruptedException
 
 !ENTRY org.eclipse.ui 2 2 2026-06-15 20:27:03.445
 !MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
+!SESSION 2026-06-15 20:29:11.192 -----------------------------------------------
+eclipse.buildId=4.14.0.202203131612
+java.version=17.0.2
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
+
+!ENTRY org.eclipse.jface 2 0 2026-06-15 20:29:18.548
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2026-06-15 20:29:18.549
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@208185c0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1831447c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2026-06-15 20:29:18.549
+!MESSAGE A conflict occurred for ALT+SHIFT+R:
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7741507c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.rename,Rename,
+		Rename the selected item,
+		Category(org.eclipse.ui.category.file,File,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@37a0fc8c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:24.835
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:24.836
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@247269c6[org.springframework.tooling.boot.ls:1.32.0.202203131529(id=569)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:24.840
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:24.876
+!MESSAGE Instantiating ReusableClasspathListenerHandler
+
+!ENTRY org.eclipse.egit.ui 2 0 2026-06-15 20:29:26.525
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\jovan'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.761
+!MESSAGE Boot LS startup time from start to initialized: 4908ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.865
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.PSXQQDlgisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.870
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.872
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.873
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.874
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.875
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.PSXQQDlg => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.887
+!MESSAGE classpath=162 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.893
+!MESSAGE buffering callback sts4.classpath.PSXQQDlg user-service false 162
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.894
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.904
+!MESSAGE classpath=171 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.910
+!MESSAGE buffering callback sts4.classpath.PSXQQDlg api-gateway false 171
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.911
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.918
+!MESSAGE classpath=182 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.923
+!MESSAGE buffering callback sts4.classpath.PSXQQDlg booking-service false 182
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.924
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.930
+!MESSAGE classpath=154 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.934
+!MESSAGE buffering callback sts4.classpath.PSXQQDlg cinema-service false 154
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.935
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.940
+!MESSAGE classpath=139 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.945
+!MESSAGE buffering callback sts4.classpath.PSXQQDlg config-server false 139
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.946
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.951
+!MESSAGE classpath=152 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.955
+!MESSAGE buffering callback sts4.classpath.PSXQQDlg discovery-server false 152
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.956
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.962
+!MESSAGE classpath=154 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.966
+!MESSAGE buffering callback sts4.classpath.PSXQQDlg movie-service false 154
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.967
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.972
+!MESSAGE classpath=134 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.975
+!MESSAGE buffering callback sts4.classpath.PSXQQDlg notification-service false 134
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:29.976
+!MESSAGE executing callback sts4.classpath.PSXQQDlg 8 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2026-06-15 20:29:30.576
+!MESSAGE executing callback sts4.classpath.PSXQQDlg SUCCESS [done]
