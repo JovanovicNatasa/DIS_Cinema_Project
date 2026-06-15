@@ -1,6 +1,9 @@
 package com.cinema.cinema.service;
 
 import com.cinema.cinema.dto.*;
+import com.cinema.cinema.exception.CinemaNotFoundException;
+import com.cinema.cinema.exception.HallNotFoundException;
+import com.cinema.cinema.exception.SeatNotFoundException;
 import com.cinema.cinema.model.Cinema;
 import com.cinema.cinema.model.Hall;
 import com.cinema.cinema.model.Seat;
@@ -44,17 +47,20 @@ public class CinemaService {
 
     public CinemaResponse getCinemaById(Long id) {
         Cinema cinema = cinemaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cinema not found"));
+                .orElseThrow(() -> new CinemaNotFoundException("Cinema not found with id: " + id));
         return new CinemaResponse(cinema.getId(), cinema.getName(), cinema.getLocation());
     }
 
     public void deleteCinema(Long id) {
+        if (!cinemaRepository.existsById(id)) {
+            throw new CinemaNotFoundException("Cinema not found with id: " + id);
+        }
         cinemaRepository.deleteById(id);
     }
 
     public HallResponse createHall(HallRequest request) {
         Cinema cinema = cinemaRepository.findById(request.getCinemaId())
-                .orElseThrow(() -> new RuntimeException("Cinema not found"));
+                .orElseThrow(() -> new CinemaNotFoundException("Cinema not found with id: " + request.getCinemaId()));
 
         Hall hall = new Hall();
         hall.setCinema(cinema);
@@ -85,14 +91,19 @@ public class CinemaService {
     }
 
     public List<HallResponse> getHallsByCinema(Long cinemaId) {
+        if (!cinemaRepository.existsById(cinemaId)) {
+            throw new CinemaNotFoundException("Cinema not found with id: " + cinemaId);
+        }
         return hallRepository.findByCinemaId(cinemaId).stream()
                 .map(h -> new HallResponse(h.getId(), h.getCinema().getId(),
                         h.getCinema().getName(), h.getName(),
                         h.getCapacity(), h.getAvailableSeats()))
                 .collect(Collectors.toList());
     }
-
     public List<SeatResponse> getSeatsByHall(Long hallId) {
+        if (!hallRepository.existsById(hallId)) {
+            throw new HallNotFoundException("Hall not found with id: " + hallId);
+        }
         return seatRepository.findByHallId(hallId).stream()
                 .map(s -> new SeatResponse(s.getId(), s.getHall().getId(),
                         s.getRowNumber(), s.getSeatNumber(), s.getIsAvailable()))
@@ -100,15 +111,17 @@ public class CinemaService {
     }
 
     public List<SeatResponse> getAvailableSeatsByHall(Long hallId) {
+        if (!hallRepository.existsById(hallId)) {
+            throw new HallNotFoundException("Hall not found with id: " + hallId);
+        }
         return seatRepository.findByHallIdAndIsAvailable(hallId, true).stream()
                 .map(s -> new SeatResponse(s.getId(), s.getHall().getId(),
                         s.getRowNumber(), s.getSeatNumber(), s.getIsAvailable()))
                 .collect(Collectors.toList());
     }
-
     public void updateSeatAvailability(Long seatId, Boolean isAvailable) {
         Seat seat = seatRepository.findById(seatId)
-                .orElseThrow(() -> new RuntimeException("Seat not found"));
+                .orElseThrow(() -> new SeatNotFoundException("Seat not found with id: " + seatId));
         seat.setIsAvailable(isAvailable);
         seatRepository.save(seat);
     }

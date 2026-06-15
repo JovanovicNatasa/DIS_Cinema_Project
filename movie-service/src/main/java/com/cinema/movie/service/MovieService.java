@@ -1,6 +1,9 @@
 package com.cinema.movie.service;
 
 import com.cinema.movie.dto.*;
+import com.cinema.movie.exception.MovieAlreadyExistsException;
+import com.cinema.movie.exception.MovieNotFoundException;
+import com.cinema.movie.exception.ScreeningNotFoundException;
 import com.cinema.movie.model.Movie;
 import com.cinema.movie.model.Screening;
 import com.cinema.movie.repository.MovieRepository;
@@ -24,6 +27,9 @@ public class MovieService {
     }
 
     public MovieResponse createMovie(MovieRequest request) {
+    	if (movieRepository.existsByTitleIgnoreCase(request.getTitle())) {
+            throw new MovieAlreadyExistsException("Movie already exists with title: " + request.getTitle());
+        }
         Movie movie = new Movie();
         movie.setTitle(request.getTitle());
         movie.setDurationMin(request.getDurationMin());
@@ -40,7 +46,7 @@ public class MovieService {
 
     public MovieResponse getMovieById(Long id) {
         Movie movie = movieRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Movie not found"));
+                .orElseThrow(() -> new MovieNotFoundException("Movie not found with id: " + id));
         return mapToMovieResponse(movie);
     }
 
@@ -57,12 +63,15 @@ public class MovieService {
     }
 
     public void deleteMovie(Long id) {
+        if (!movieRepository.existsById(id)) {
+            throw new MovieNotFoundException("Movie not found with id: " + id);
+        }
         movieRepository.deleteById(id);
     }
 
     public ScreeningResponse createScreening(ScreeningRequest request) {
         Movie movie = movieRepository.findById(request.getMovieId())
-                .orElseThrow(() -> new RuntimeException("Movie not found"));
+                .orElseThrow(() -> new MovieNotFoundException("Movie not found with id: " + request.getMovieId()));
         Screening screening = new Screening();
         screening.setMovie(movie);
         screening.setHallId(request.getHallId());
@@ -90,14 +99,17 @@ public class MovieService {
                 .map(this::mapToScreeningResponse)
                 .collect(Collectors.toList());
     }
-    
+
     public ScreeningResponse getScreeningById(Long id) {
         Screening screening = screeningRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Screening not found"));
+                .orElseThrow(() -> new ScreeningNotFoundException("Screening not found with id: " + id));
         return mapToScreeningResponse(screening);
     }
 
     public void deleteScreening(Long id) {
+        if (!screeningRepository.existsById(id)) {
+            throw new ScreeningNotFoundException("Screening not found with id: " + id);
+        }
         screeningRepository.deleteById(id);
     }
 

@@ -9,6 +9,9 @@ import com.cinema.booking.config.RabbitMQConfig;
 import com.cinema.booking.dto.BookingRequest;
 import com.cinema.booking.dto.BookingResponse;
 import com.cinema.booking.dto.NotificationMessage;
+import com.cinema.booking.exception.BookingNotFoundException;
+import com.cinema.booking.exception.ScreeningNotFoundException;
+import com.cinema.booking.exception.UserNotFoundException;
 import com.cinema.booking.model.Booking;
 import com.cinema.booking.model.BookingStatus;
 import com.cinema.booking.repository.BookingRepository;
@@ -44,13 +47,13 @@ public class BookingService {
         // Sync call to user-service
         UserResponse user = userClient.getUserById(request.getUserId());
         if (user == null) {
-            throw new RuntimeException("User not found");
+            throw new UserNotFoundException("User not found with id: " + request.getUserId());
         }
 
         // Sync call to movie-service
         ScreeningResponse screening = screeningClient.getScreeningById(request.getScreeningId());
         if (screening == null) {
-            throw new RuntimeException("Screening not found");
+            throw new ScreeningNotFoundException("Screening not found with id: " + request.getScreeningId());
         }
 
         // Create booking
@@ -99,13 +102,13 @@ public class BookingService {
 
     public BookingResponse getBookingById(Long id) {
         Booking booking = bookingRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
+                .orElseThrow(() -> new BookingNotFoundException("Booking not found with id: " + id));
         return mapToResponse(booking);
     }
 
     public BookingResponse cancelBooking(Long id) {
         Booking booking = bookingRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
+                .orElseThrow(() -> new BookingNotFoundException("Booking not found with id: " + id));
         booking.setStatus(BookingStatus.CANCELLED);
         Booking saved = bookingRepository.save(booking);
 
