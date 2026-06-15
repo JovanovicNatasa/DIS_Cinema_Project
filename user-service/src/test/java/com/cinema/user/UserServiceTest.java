@@ -76,11 +76,9 @@ public class UserServiceTest {
     @Test
     void register_ShouldThrowException_WhenEmailExists() {
         when(userRepository.existsByEmail(anyString())).thenReturn(true);
-
         RuntimeException exception = assertThrows(RuntimeException.class,
                 () -> userService.register(registerRequest));
-
-        assertEquals("Email already exists", exception.getMessage());
+        assertEquals("Email already exists: john@example.com", exception.getMessage());
         verify(userRepository, never()).save(any(User.class));
     }
 
