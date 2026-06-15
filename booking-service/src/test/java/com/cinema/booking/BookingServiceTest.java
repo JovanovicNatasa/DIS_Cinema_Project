@@ -109,7 +109,7 @@ public class BookingServiceTest {
         RuntimeException exception = assertThrows(RuntimeException.class,
                 () -> bookingService.createBooking(request));
 
-        assertEquals("User not found", exception.getMessage());
+        assertEquals("User not found with id: 99", exception.getMessage());
         verify(bookingRepository, never()).save(any());
     }
 

@@ -51,6 +51,7 @@ public class MovieServiceTest {
         request.setDurationMin(148);
         request.setGenre("Sci-Fi");
 
+        when(movieRepository.existsByTitleIgnoreCase("Inception")).thenReturn(false);
         when(movieRepository.save(any(Movie.class))).thenReturn(movie);
 
         MovieResponse response = movieService.createMovie(request);
@@ -59,6 +60,22 @@ public class MovieServiceTest {
         assertEquals("Inception", response.getTitle());
         assertEquals("Sci-Fi", response.getGenre());
         verify(movieRepository, times(1)).save(any(Movie.class));
+    }
+
+    @Test
+    void createMovie_ShouldThrowException_WhenMovieAlreadyExists() {
+        MovieRequest request = new MovieRequest();
+        request.setTitle("Inception");
+        request.setDurationMin(148);
+        request.setGenre("Sci-Fi");
+
+        when(movieRepository.existsByTitleIgnoreCase("Inception")).thenReturn(true);
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> movieService.createMovie(request));
+
+        assertEquals("Movie already exists with title: Inception", exception.getMessage());
+        verify(movieRepository, never()).save(any(Movie.class));
     }
 
     @Test
@@ -78,7 +95,7 @@ public class MovieServiceTest {
         RuntimeException exception = assertThrows(RuntimeException.class,
                 () -> movieService.getMovieById(99L));
 
-        assertEquals("Movie not found", exception.getMessage());
+        assertEquals("Movie not found with id: 99", exception.getMessage());
     }
 
     @Test
