@@ -134,4 +134,24 @@ public class MovieServiceTest {
         assertEquals(1, result.size());
         assertEquals("Inception", result.get(0).getTitle());
     }
+    @Test
+    void deleteMovie_ShouldThrowException_WhenNotFound() {
+        when(movieRepository.existsById(99L)).thenReturn(false);
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> movieService.deleteMovie(99L));
+
+        assertEquals("Movie not found with id: 99", exception.getMessage());
+        verify(movieRepository, never()).deleteById(any());
+    }
+
+    @Test
+    void getScreeningById_ShouldThrowException_WhenNotFound() {
+        when(screeningRepository.findById(99L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> movieService.getScreeningById(99L));
+
+        assertEquals("Screening not found with id: 99", exception.getMessage());
+    }
 }

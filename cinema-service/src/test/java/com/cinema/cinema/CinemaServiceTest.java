@@ -118,4 +118,59 @@ public class CinemaServiceTest {
         assertEquals(1, result.size());
         assertEquals("Cinestar", result.get(0).getName());
     }
+    @Test
+    void getHallsByCinema_ShouldThrowException_WhenCinemaNotFound() {
+        when(cinemaRepository.existsById(99L)).thenReturn(false);
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> cinemaService.getHallsByCinema(99L));
+
+        assertEquals("Cinema not found with id: 99", exception.getMessage());
+    }
+
+    @Test
+    void getSeatsByHall_ShouldThrowException_WhenHallNotFound() {
+        when(hallRepository.existsById(99L)).thenReturn(false);
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> cinemaService.getSeatsByHall(99L));
+
+        assertEquals("Hall not found with id: 99", exception.getMessage());
+    }
+
+    @Test
+    void updateSeatAvailability_ShouldThrowException_WhenSeatNotFound() {
+        when(seatRepository.findById(99L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> cinemaService.updateSeatAvailability(99L, true));
+
+        assertEquals("Seat not found with id: 99", exception.getMessage());
+    }
+
+    @Test
+    void deleteCinema_ShouldThrowException_WhenNotFound() {
+        when(cinemaRepository.existsById(99L)).thenReturn(false);
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> cinemaService.deleteCinema(99L));
+
+        assertEquals("Cinema not found with id: 99", exception.getMessage());
+    }
+    
+    @Test
+    void createHall_ShouldThrowException_WhenCinemaNotFound() {
+        HallRequest request = new HallRequest();
+        request.setCinemaId(99L);
+        request.setName("Hall A");
+        request.setCapacity(80);
+
+        when(cinemaRepository.findById(99L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> cinemaService.createHall(request));
+
+        assertEquals("Cinema not found with id: 99", exception.getMessage());
+        verify(hallRepository, never()).save(any());
+    }
 }

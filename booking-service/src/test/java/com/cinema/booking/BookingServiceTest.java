@@ -133,4 +133,42 @@ public class BookingServiceTest {
         assertEquals(1, result.size());
         assertEquals(1L, result.get(0).getUserId());
     }
+    
+    @Test
+    void createBooking_ShouldThrowException_WhenScreeningNotFound() {
+        BookingRequest request = new BookingRequest();
+        request.setUserId(1L);
+        request.setScreeningId(99L);
+        request.setSeatId(1L);
+
+        when(userClient.getUserById(1L)).thenReturn(userResponse);
+        when(screeningClient.getScreeningById(99L)).thenReturn(null);
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> bookingService.createBooking(request));
+
+        assertEquals("Screening not found with id: 99", exception.getMessage());
+        verify(bookingRepository, never()).save(any());
+    }
+    
+    @Test
+    void getBookingById_ShouldThrowException_WhenNotFound() {
+        when(bookingRepository.findById(99L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> bookingService.getBookingById(99L));
+
+        assertEquals("Booking not found with id: 99", exception.getMessage());
+    }
+    
+    @Test
+    void cancelBooking_ShouldThrowException_WhenNotFound() {
+        when(bookingRepository.findById(99L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> bookingService.cancelBooking(99L));
+
+        assertEquals("Booking not found with id: 99", exception.getMessage());
+        verify(bookingRepository, never()).save(any());
+    }
 }

@@ -2,6 +2,7 @@ package com.cinema.user;
 
 import com.cinema.user.dto.RegisterRequest;
 import com.cinema.user.dto.AuthResponse;
+import com.cinema.user.dto.LoginRequest;
 import com.cinema.user.model.Role;
 import com.cinema.user.model.User;
 import com.cinema.user.repository.RoleRepository;
@@ -37,6 +38,8 @@ public class UserServiceTest {
     private JwtService jwtService;
     @Mock
     private AuthenticationManager authenticationManager;
+    @Mock
+    private org.springframework.context.ApplicationContext applicationContext;
 
     @InjectMocks
     private UserService userService;
@@ -95,5 +98,63 @@ public class UserServiceTest {
 
         assertNotNull(userDetails);
         assertEquals("john@example.com", userDetails.getUsername());
+    }
+    
+    @Test
+    void getUserById_ShouldThrowException_WhenNotFound() {
+        when(userRepository.findById(99L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> userService.getUserById(99L));
+
+        assertEquals("User not found with id: 99", exception.getMessage());
+    }
+
+    @Test
+    void deleteUser_ShouldThrowException_WhenNotFound() {
+        when(userRepository.existsById(99L)).thenReturn(false);
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> userService.deleteUser(99L));
+
+        assertEquals("User not found with id: 99", exception.getMessage());
+        verify(userRepository, never()).deleteById(any());
+    }
+
+    @Test
+    void register_ShouldThrowException_WhenRoleNotFound() {
+        when(userRepository.existsByEmail(anyString())).thenReturn(false);
+        when(roleRepository.findByRoleName("USER")).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> userService.register(registerRequest));
+
+        assertEquals("Default role not found", exception.getMessage());
+        verify(userRepository, never()).save(any());
+    }
+    
+    @Test
+    void login_ShouldThrowException_WhenBadCredentials() {
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setEmail("john@example.com");
+        loginRequest.setPassword("wrongPassword");
+
+        when(applicationContext.getBean(AuthenticationManager.class)).thenReturn(authenticationManager);
+        doThrow(new org.springframework.security.authentication.BadCredentialsException("Bad credentials"))
+                .when(authenticationManager).authenticate(any());
+
+        assertThrows(org.springframework.security.authentication.BadCredentialsException.class,
+                () -> userService.login(loginRequest));
+    }
+
+    @Test
+    void loadUserByUsername_ShouldThrowException_WhenNotFound() {
+        when(userRepository.findByEmail("unknown@example.com")).thenReturn(Optional.empty());
+
+        org.springframework.security.core.userdetails.UsernameNotFoundException exception =
+                assertThrows(org.springframework.security.core.userdetails.UsernameNotFoundException.class,
+                        () -> userService.loadUserByUsername("unknown@example.com"));
+
+        assertEquals("User not found: unknown@example.com", exception.getMessage());
     }
 }
