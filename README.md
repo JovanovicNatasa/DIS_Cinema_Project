@@ -200,15 +200,25 @@ Authorization: Bearer <your-token>
 
 ## CI/CD Pipeline
 
-The pipeline runs automatically on every push to the main branch. I set this up with GitHub Actions — it was actually simpler than I expected once I understood the YAML syntax.
+The pipeline runs automatically on every push to the main branch (tests, build, and development deployment). Production deployment is a separate, manually triggered stage — see below. I set this up with GitHub Actions — it was actually simpler than I expected once I understood the YAML syntax.
 
 ![CI/CD Pipeline](docs/images/CICDPipeline.png)
 
 | Stage | What it does |
 |-------|-------------|
-| Run Tests | Runs unit tests for all 8 services (JUnit 5 + Mockito) |
+| Run Tests | Runs unit tests (JUnit 5 + Mockito) for all 8 services, plus Testcontainers integration tests for 4 of them |
 | Build Docker Images | Builds Maven JARs and Docker images |
 | Deploy to Development | Deploys to the development environment |
+| Deploy to Production | Manually triggered deployment to production with required approval |
+
+### Production Deployment
+
+The production deployment stage is triggered manually through GitHub Actions (`workflow_dispatch`), 
+not automatically on every push. This reflects standard practice where production deploys require 
+a deliberate decision, unlike development deploys which run on every push to `main`.
+
+The `production` environment is protected with required reviewers in GitHub — when a production 
+deployment is requested, it pauses and waits for manual approval before proceeding.
 
 ### GitHub Secrets needed
 
@@ -231,6 +241,22 @@ mvn test
 # Run tests for all services at once
 cd cinema-parent
 mvn test
+```
+
+### Integration Tests
+
+Four of the business services (user, cinema, movie, booking) also have integration tests that 
+use Testcontainers to spin up a real PostgreSQL container during test execution. This verifies 
+actual database behavior (constraints, sequences, real SQL dialect) rather than relying on mocks.
+
+For booking-service specifically, the Feign clients (calls to user, movie and cinema services) 
+and the RabbitTemplate are mocked, since the other microservices and RabbitMQ aren't running 
+during the test — only the database interaction is tested for real.
+
+```bash
+# Run integration tests for a specific service (requires Docker running)
+cd user-service
+mvn test -Dtest=UserServiceIntegrationTest
 ```
 
 ---
