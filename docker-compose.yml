@@ -250,7 +250,29 @@ services:
       timeout: 10s
       retries: 10
       start_period: 120s
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - user-service
+      - cinema-service
+      - movie-service
+      - booking-service
+      - notification-service
+      - api-gateway
 
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
 volumes:
   user-db-data:
   cinema-db-data:

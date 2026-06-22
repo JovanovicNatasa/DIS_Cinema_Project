@@ -33,6 +33,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/users/register", "/api/users/login").permitAll()
                 // Allowed without token for internal Feign Client communication (booking-service -> user-service)
                 .requestMatchers(HttpMethod.GET, "/api/users/{id}").permitAll()
+                // Allowed for Prometheus to scrape metrics
+                .requestMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session

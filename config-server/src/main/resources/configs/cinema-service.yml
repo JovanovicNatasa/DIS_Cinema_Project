@@ -24,3 +24,8 @@ eureka:
       defaultZone: http://eureka:eureka-secret@discovery-server:8761/eureka/
   instance:
     prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
