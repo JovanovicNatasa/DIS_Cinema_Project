@@ -261,6 +261,21 @@ mvn test -Dtest=UserServiceIntegrationTest
 
 ---
 
+## Monitoring
+
+As an additional feature beyond the core requirements, I added Prometheus and Grafana for 
+monitoring. Every service already exposes Actuator endpoints, so adding `micrometer-registry-prometheus` 
+and enabling the `/actuator/prometheus` endpoint was enough to make metrics available — no extra 
+instrumentation needed in the application code itself.
+
+Prometheus scrapes metrics from all 8 services every 15 seconds (see `prometheus.yml`), and Grafana 
+visualizes them through a dashboard tracking JVM thread counts and HTTP request rates per service.
+
+- Prometheus: http://localhost:9090 (Status → Targets to see scrape health)
+- Grafana: http://localhost:3000 (admin / admin on first login)
+
+---
+
 ## Project Structure
 
 ```
